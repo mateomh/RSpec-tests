@@ -192,7 +192,7 @@ describe Enumerable do
       end
     end
 
-    #My Count
+    #My Countt
     describe "My Count method - good cases" do
       let(:case1) { [1, 2, 9, 7, 11, 23, 8] }
       let(:case2) { (1..10) }
