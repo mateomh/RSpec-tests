@@ -119,7 +119,7 @@ module Enumerable
       sym = arguments[0].to_s
       start = 1
     end
-    (start...Array(self).length).each do |i|
+    (start...Array(self).length).my_each do |i|
       acum = if block_given?
               yield(acum, Array(self)[i])
             else
