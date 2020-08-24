@@ -1,9 +1,19 @@
-require "../lib/board.rb"
-require "../lib/player.rb"
-require "../lib/game.rb"
+require "./lib/board.rb"
+require "./lib/player.rb"
+require "./lib/game.rb"
 
 describe Board do
+  let (:case1) {Board.new}
+  let (:empty_board) {Board.new}
+  let (:move) {Board.new}
+  it 'checks board' do
+    expect(case1.board).to eql([1, 2, 3, 4, 5, 6, 7, 8, 9])
+  end
   
+  it 'checks board' do
+    case1.take_position(1,'X')
+    expect(case1.board).to eql(['X', 2, 3, 4, 5, 6, 7, 8, 9])
+  end
 end
 
 describe Player do
