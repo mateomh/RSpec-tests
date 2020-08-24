@@ -238,4 +238,28 @@ describe Enumerable do
       expect(flag).to eql(true)
     end
   end
+
+
+  describe 'my_each_with_index' do
+    let(:case1) {[]}
+    let(:case2) {(1...5)}
+    let(:case3) {  { name: 'John', last: 'Doe' } }
+    it 'Checks for an element index' do
+    expect(case1.my_each_with_index { |elem, index| puts "Element: #{elem}  | Index:  #{index}"}).to eql( case1.each_with_index { |elem, index| puts "Element: #{elem}  | Index:  #{index}"})
+    end
+
+    it 'checks number of an element' do
+      expect((case2).my_each_with_index  {|elem, index| puts "Element: #{elem}  | Index:  #{index}"}).to eql( (case2).each_with_index {|elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"})
+    end
+
+    it 'checks for an hash' do
+      expect(case3.my_each_with_index { |elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"}).to eql(case3.each_with_index {|elem, index| puts "Element: #{elem}  | Index:  #{index}"})
+    end
+    
+    it 'checks for no block given' do
+      expect(case1.my_each_with_index.class).to eql(Enumerator)
+    end
+  end
 end
