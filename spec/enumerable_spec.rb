@@ -46,6 +46,16 @@ describe Enumerable do
     let(:case1) { [] }
     let(:case2) { (1...5) }
     let(:case3) { { name: 'John', last: 'Doe' } }
+    let(:case4) { [1, 5, 6, 9, 7, 8, 55, 66] }
+
+    it 'Checks with an array' do
+      expect(case4.my_each_with_index { |elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"
+      }).to eql(case4.each_with_index { |elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"
+      })
+    end
+
     it 'Checks for an element index' do
       expect(case1.my_each_with_index { |elem, index|
         puts "Element: #{elem}  | Index:  #{index}"
