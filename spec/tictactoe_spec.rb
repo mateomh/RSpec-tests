@@ -52,7 +52,7 @@ describe Game do
   let(:winmove_diag) { ['X', 2, 3, 4, 'X', 6, 7, 8, 9] }
   let(:nowinmove_diag) { ['X', 2, 3, 4, 'X', 6, 7, 8, 'O'] }
   let(:nowinmove_special) { [1, 2, 'X', 4, 'X', 6, 7, 8, 'X'] }
-  
+
   it 'Checks for no winning' do
     expect(game.check_victory('X', [1, 2, 3, 4, 5, 6, 7, 8, 9])).to eql(false)
   end
@@ -90,42 +90,42 @@ describe Game do
   end
 
   it 'Checks for winning move row' do
-    expect(game.check_win_move('X',winmove_row)).to eql(true)
+    expect(game.check_win_move('X', winmove_row)).to eql(true)
   end
 
   it 'Checks for not a winning move row' do
-    expect(game.check_win_move('X',nowinmove_row)).to eql(false)
+    expect(game.check_win_move('X', nowinmove_row)).to eql(false)
   end
 
   it 'Checks for winning move column' do
-    expect(game.check_win_move('X',winmove_col)).to eql(true)
+    expect(game.check_win_move('X', winmove_col)).to eql(true)
   end
 
   it 'Checks for not a winning move column' do
-    expect(game.check_win_move('X',nowinmove_col)).to eql(false)
+    expect(game.check_win_move('X', nowinmove_col)).to eql(false)
   end
 
   it 'Checks for winning move diagonal' do
-    expect(game.check_win_move('X',winmove_diag)).to eql(true)
+    expect(game.check_win_move('X', winmove_diag)).to eql(true)
   end
 
   it 'Checks for not a winning move diagonal' do
-    expect(game.check_win_move('X',nowinmove_diag)).to eql(false)
+    expect(game.check_win_move('X', nowinmove_diag)).to eql(false)
   end
 
   it 'Checks for a special board layout for the diagonal' do
-    expect(game.check_victory('X',nowinmove_special)).to eql(false)
+    expect(game.check_victory('X', nowinmove_special)).to eql(false)
   end
 
   it 'Checks for a valid position' do
-    expect(game.check_position(1,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(true)
+    expect(game.check_position(1, [1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(true)
   end
 
   it 'Checks for a not valid position' do
-    expect(game.check_position(0,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
+    expect(game.check_position(0, [1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
   end
 
   it 'Checks for an occupied position' do
-    expect(game.check_position(5,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
+    expect(game.check_position(5, [1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
   end
 end
