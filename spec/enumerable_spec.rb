@@ -1,27 +1,38 @@
+# rubocop:disable Layout/BlockAlignment, Style/BlockDelimiters
+
 require './lib/enumerable.rb'
 
 describe Enumerable do
   include Enumerable
 
   describe 'My Each method' do
-
-    let(:case1) {[]}
-    let(:case2) {(1...5)}
-    let(:case3) {  { name: 'John', last: 'Doe' } }
+    let(:case1) { [] }
+    let(:case2) { (1...5) }
+    let(:case3) { { name: 'John', last: 'Doe' } }
     it 'Checks for an element ' do
-    expect(case1.my_each{ |elem| puts "Element: #{elem} "}).to eql( case1.each { |elem,| puts "Element: #{elem} "})
+      expect(case1.my_each { |elem|
+        puts "Element: #{elem} "
+      }).to eql(case1.each { |elem|
+        puts "Element: #{elem} "
+      })
     end
 
     it 'checks number of an element' do
-      expect((case2).my_each  {|elem| puts "Element: #{elem} "}).to eql( (case2).each {|elem|
-        puts "Element: #{elem} "})
+      expect(case2.my_each { |elem|
+        puts "Element: #{elem} "
+      }).to eql(case2.each { |elem|
+        puts "Element: #{elem} "
+      })
     end
 
     it 'checks for an hash' do
       expect(case3.my_each { |elem|
-        puts "Element: #{elem} "}).to eql(case3.each {|elem| puts "Element: #{elem} "})
+        puts "Element: #{elem} "
+      }).to eql(case3.each { |elem|
+        puts "Element: #{elem} "
+      })
     end
-    
+
     it 'checks for no block given' do
       expect(case1.my_each.class).to eql(Enumerator)
     end
@@ -29,9 +40,40 @@ describe Enumerable do
     it 'Takes each element of the object passed' do
       expect([1, 2, 5, 6, 8].my_each { |x| print x }).to eql([1, 2, 5, 6, 8].each { |x| print x })
     end
-
   end
 
+  describe 'my_each_with_index' do
+    let(:case1) { [] }
+    let(:case2) { (1...5) }
+    let(:case3) { { name: 'John', last: 'Doe' } }
+    it 'Checks for an element index' do
+      expect(case1.my_each_with_index { |elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"
+      }).to eql(case1.each_with_index { |elem, index|
+        puts "Element: #{elem}  | Index:  #{index}"
+      })
+    end
+
+    it 'checks number of an element' do
+      expect(case2.my_each_with_index { |elem, index|
+          puts "Element: #{elem}  | Index:  #{index}"
+        }).to eql(case2.each_with_index { |elem, index|
+          puts "Element: #{elem}  | Index:  #{index}"
+        })
+    end
+
+    it 'checks for an hash' do
+      expect(case3.my_each_with_index { |elem, index|
+          puts "Element: #{elem}  | Index:  #{index}"
+        }).to eql(case3.each_with_index { |elem, index|
+          puts "Element: #{elem}  | Index:  #{index}"
+        })
+    end
+
+    it 'checks for no block given' do
+      expect(case1.my_each_with_index.class).to eql(Enumerator)
+    end
+  end
 
   describe 'My all method' do
     let(:case1) { %w[ant bear cat] }
@@ -262,29 +304,5 @@ describe Enumerable do
       expect(flag).to eql(true)
     end
   end
-
-
-  describe 'my_each_with_index' do
-    let(:case1) {[]}
-    let(:case2) {(1...5)}
-    let(:case3) {  { name: 'John', last: 'Doe' } }
-    it 'Checks for an element index' do
-    expect(case1.my_each_with_index { |elem, index| puts "Element: #{elem}  | Index:  #{index}"}).to eql( case1.each_with_index { |elem, index| puts "Element: #{elem}  | Index:  #{index}"})
-    end
-
-    it 'checks number of an element' do
-      expect((case2).my_each_with_index  {|elem, index| puts "Element: #{elem}  | Index:  #{index}"}).to eql( (case2).each_with_index {|elem, index|
-        puts "Element: #{elem}  | Index:  #{index}"})
-    end
-
-    it 'checks for an hash' do
-      expect(case3.my_each_with_index { |elem, index|
-        puts "Element: #{elem}  | Index:  #{index}"}).to eql(case3.each_with_index {|elem, index| puts "Element: #{elem}  | Index:  #{index}"})
-    end
-    
-    it 'checks for no block given' do
-      expect(case1.my_each_with_index.class).to eql(Enumerator)
-    end
-  end
 end
-
+# rubocop:enable Layout/BlockAlignment, Style/BlockDelimiters
