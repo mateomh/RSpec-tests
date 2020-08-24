@@ -5,7 +5,6 @@ require './lib/enumerable.rb'
 describe Enumerable do
   include Enumerable
 
-
   describe 'My Each method' do
     let(:case1) { [] }
     let(:case2) { (1...5) }
