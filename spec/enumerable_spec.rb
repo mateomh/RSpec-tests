@@ -75,6 +75,16 @@ describe Enumerable do
     end
   end
 
+  describe 'My select method' do
+    it 'Selects from a range' do
+      expect((1..10).my_select { |i| (i % 3).zero? }).to eql((1..10).select { |i| (i % 3).zero? })
+    end
+
+    it 'No block given' do
+      expect((1..10).my_select.class).to eql(Enumerator)
+    end
+  end
+
   describe 'My all method' do
     let(:case1) { %w[ant bear cat] }
     let(:case2) { [1, 2i, 3.14] }
