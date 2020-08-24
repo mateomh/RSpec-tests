@@ -117,66 +117,61 @@ describe Enumerable do
     end
   end
 
-  describe 'My none method - good cases' do
+  describe 'My none method' do
     let(:case1) { %w[ant bear cat] }
     let(:case2) { [1, 2i, 3.14] }
     let(:case3) { %w[a a] }
     let(:case4) { [1, 1] }
     let(:case5) { [] }
+    let(:case6) { [nil, true, 99] }
+    let(:case7) { [1, 2] }
 
-    it 'Checks for a block passed with no argument' do
+    it 'GOOD CASE - Checks for a block passed with no argument' do
       expect(case1.my_none? { |word| word.length >= 3 }).to eql(case1.none? { |word| word.length >= 3 })
     end
 
-    it 'Checks for REGEXP as an argument' do
+    it 'GOOD CASE - Checks for REGEXP as an argument' do
       expect(case1.my_none?(/a/)).to eql(case1.none?(/a/))
     end
 
-    it 'Checks for argument with a class and no block' do
+    it 'GOOD CASE - Checks for argument with a class and no block' do
       expect(case2.my_none?(Numeric)).to eql(case2.none?(Numeric))
     end
 
-    it 'Checks a string as an argument' do
+    it 'GOOD CASE - Checks a string as an argument' do
       expect(case3.my_none?('a')).to eql(case3.none?('a'))
     end
 
-    it 'Checks for numeric argument with no block passed' do
+    it 'GOOD CASE - Checks for numeric argument with no block passed' do
       expect(case4.my_none?(1)).to eql(case4.none?(1))
     end
 
-    it 'Checks for empty array with no argument and not block passed' do
+    it 'GOOD CASE - Checks for empty array with no argument and not block passed' do
       expect(case5.my_none?).to eql(case5.none?)
     end
-  end
 
-  describe 'My none method - bad cases' do
-    let(:case1) { %w[ant bear cat] }
-    let(:case2) { %w[a b] }
-    let(:case3) { [nil, true, 99] }
-    let(:case4) { [1, 2] }
-
-    it 'Checks for a block passed with no argument' do
+    it 'BAD CASE - Checks for a block passed with no argument' do
       expect(case1.my_none? { |word| word.length >= 4 }).to eql(case1.none? { |word| word.length >= 4 })
     end
 
-    it 'Checks for REGEXP as an argument no block' do
+    it 'BAD CASE - Checks for REGEXP as an argument no block' do
       expect(case1.my_none?(/x/)).to eql(case1.none?(/x/))
     end
 
-    it 'Checks a string as an argument' do
-      expect(case2.my_none?('a')).to eql(case2.none?('a'))
+    it 'BAD CASE - Checks a string as an argument' do
+      expect(case3.my_none?('a')).to eql(case3.none?('a'))
     end
 
-    it 'Checks when the input has different types insed it' do
-      expect(case3.my_none?).to eql(case3.none?)
+    it 'BAD CASE - Checks when the input has different types insed it' do
+      expect(case6.my_none?).to eql(case6.none?)
     end
 
-    it 'Checks for different numbers in the array' do
-      expect(case4.my_none?(1)).to eql(case4.none?(1))
+    it 'BAD CASE - Checks for different numbers in the array' do
+      expect(case7.my_none?(1)).to eql(case7.none?(1))
     end
   end
 
-  describe 'My Count method - good cases' do
+  describe 'My Count method' do
     let(:case1) { [1, 2, 9, 7, 11, 23, 8] }
     let(:case2) { (1..10) }
 
