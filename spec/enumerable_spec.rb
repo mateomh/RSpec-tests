@@ -63,62 +63,57 @@ describe Enumerable do
     end
   end
 
-  describe 'My any method - good cases' do
+  describe 'My any method' do
     let(:case1) { %w[ant bear cat] }
     let(:case2) { [1, 2i, 3.14] }
     let(:case3) { %w[a a] }
     let(:case4) { [1, 1] }
     let(:case5) { [] }
+    let(:case6) { [nil, true, 99] }
+    let(:case7) { [1, 2] }
 
-    it 'Checks for a block passed with no argument' do
+    it 'GOOD CASE - Checks for a block passed with no argument' do
       expect(case1.my_any? { |word| word.length >= 3 }).to eql(case1.any? { |word| word.length >= 3 })
     end
 
-    it 'Checks for REGEXP as an argument' do
+    it 'GOOD CASE - Checks for REGEXP as an argument' do
       expect(case1.my_any?(/a/)).to eql(case1.any?(/a/))
     end
 
-    it 'Checks for argument with a class and no block' do
+    it 'GOOD CASE - Checks for argument with a class and no block' do
       expect(case2.my_any?(Numeric)).to eql(case2.any?(Numeric))
     end
 
-    it 'Checks a string as an argument' do
+    it 'GOOD CASE - Checks a string as an argument' do
       expect(case3.my_any?('a')).to eql(case3.any?('a'))
     end
 
-    it 'Checks for numeric argument with no block passed' do
+    it 'GOOD CASE - Checks for numeric argument with no block passed' do
       expect(case4.my_any?(1)).to eql(case4.any?(1))
     end
 
-    it 'Checks for empty array with no argument and not block passed' do
+    it 'GOOD CASE - Checks for empty array with no argument and not block passed' do
       expect(case5.my_any?).to eql(case5.any?)
     end
-  end
 
-  describe 'My any method - bad cases' do
-    let(:case1) { %w[ant bear cat] }
-    let(:case2) { %w[a b] }
-    let(:case3) { [nil, true, 99] }
-    let(:case4) { [1, 2] }
-
-    it 'Checks for a block passed with no argument' do
+    it 'BAD CASE - Checks for a block passed with no argument' do
       expect(case1.my_any? { |word| word.length >= 4 }).to eql(case1.any? { |word| word.length >= 4 })
     end
 
-    it 'Checks for REGEXP as an argument no block' do
+    it 'BAD CASE - Checks for REGEXP as an argument no block' do
       expect(case1.my_any?(/x/)).to eql(case1.any?(/x/))
     end
 
-    it 'Checks a string as an argument' do
-      expect(case2.my_any?('a')).to eql(case2.any?('a'))
+    it 'BAD CASE - Checks a string as an argument' do
+      expect(case3.my_any?('a')).to eql(case3.any?('a'))
     end
 
-    it 'Checks when the input has different types inside it' do
-      expect(case3.my_any?).to eql(case3.any?)
+    it 'BAD CASE - Checks when the input has different types inside it' do
+      expect(case6.my_any?).to eql(case6.any?)
     end
 
-    it 'Checks for different numbers in the array' do
-      expect(case4.my_any?(1)).to eql(case4.any?(1))
+    it 'BAD CASE - Checks for different numbers in the array' do
+      expect(case7.my_any?(1)).to eql(case7.any?(1))
     end
   end
 
