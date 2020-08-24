@@ -251,6 +251,10 @@ describe Enumerable do
     let(:case1) { [1, 2, 9, 7, 11, 23, 8] }
     let(:case2) { (1..10) }
 
+    it 'checks for the block' do
+      expect((1..5).my_count { |x| x >= 3 }).to eql((1..5).count { |x| x >= 3 })
+    end
+
     it 'Checks for no arguments' do
       expect(case1.my_count).to eql(case1.count)
     end
