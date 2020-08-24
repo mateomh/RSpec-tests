@@ -96,4 +96,36 @@ describe Game do
   it 'Checks for not a winning move row' do
     expect(game.check_win_move('X',nowinmove_row)).to eql(false)
   end
+
+  it 'Checks for winning move column' do
+    expect(game.check_win_move('X',winmove_col)).to eql(true)
+  end
+
+  it 'Checks for not a winning move column' do
+    expect(game.check_win_move('X',nowinmove_col)).to eql(false)
+  end
+
+  it 'Checks for winning move diagonal' do
+    expect(game.check_win_move('X',winmove_diag)).to eql(true)
+  end
+
+  it 'Checks for not a winning move diagonal' do
+    expect(game.check_win_move('X',nowinmove_diag)).to eql(false)
+  end
+
+  it 'Checks for a special board layout for the diagonal' do
+    expect(game.check_victory('X',nowinmove_special)).to eql(false)
+  end
+
+  it 'Checks for a valid position' do
+    expect(game.check_position(1,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(true)
+  end
+
+  it 'Checks for a not valid position' do
+    expect(game.check_position(0,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
+  end
+
+  it 'Checks for an occupied position' do
+    expect(game.check_position(5,[1, 2, 3, 'X', 'X', 'X', 7, 8, 9])).to eql(false)
+  end
 end
